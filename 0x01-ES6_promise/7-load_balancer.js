@@ -3,4 +3,3 @@ export default function loadBalancer(chinaDownload, USDownload) {
     .race([chinaDownload, USDownload])
     .then((result) => result);
 }
-

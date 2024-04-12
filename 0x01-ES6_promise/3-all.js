@@ -15,4 +15,3 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
       return { photo: null, user: null };
     });
 }
-
