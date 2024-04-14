@@ -1,44 +1,71 @@
-import Currency from './3-currency';
-
-export default class Pricing {
-  constructor(amount, currency) {
-    this._amount = amount;
-    this._currency = currency;
+/**
+ * Represents a Holberton Course.
+ */
+export default class HolbertonCourse {
+  /**
+   * Creates a new @see {@link HolbertonCourse}.
+   *
+   * @param {String} name - The name of the course.
+   * @param {Number} length - How long the course is (in months).
+   * @param {String[]} students - The names of students in the course.
+   */
+  constructor(name, length, students) {
+    this.name = name;
+    this.length = length;
+    this.students = students;
   }
 
-  get amount() {
-    return this._amount;
+  /**
+   * Gets the name of this course.
+   */
+  get name() {
+    return this._name;
   }
 
-  set amount(value) {
+  /**
+   * Sets the name of this course.
+   */
+  set name(value) {
+    if (typeof value !== 'string') {
+      throw new TypeError('Name must be a string');
+    }
+    this._name = value;
+  }
+
+  /**
+   * Gets the length of this course (in months).
+   */
+  get length() {
+    return this._length;
+  }
+
+  /**
+   * Sets the length of this course (in months).
+   */
+  set length(value) {
     if (typeof value !== 'number') {
-      throw new TypeError('amount must be a number');
+      throw new TypeError('Length must be a number');
     }
-    this._amount = value;
+    this._length = value;
   }
 
-  get currency() {
-    return this._currency;
+  /**
+   * Gets the names of students in this course.
+   */
+  get students() {
+    return this._students;
   }
 
-  set currency(value) {
-    if (!(value instanceof Currency)) {
-      throw new TypeError('currency must be a Currency');
+  /**
+   * Sets the names of students in this course.
+   */
+  set students(value) {
+    if (!(value instanceof Array)) {
+      throw new TypeError('Students must be an array of strings');
     }
-    this._currency = value;
-  }
-
-  displayFullPrice() {
-    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
-  }
-
-  static convertPrice(amount, conversionRate) {
-    if (typeof amount !== 'number') {
-      throw new TypeError('amount must be a number');
+    if (!value.every((student) => typeof student === 'string')) {
+      throw new TypeError('Students must be an array of strings');
     }
-    if (typeof conversionRate !== 'number') {
-      throw new TypeError('conversionRate must be a number');
-    }
-    return amount * conversionRate;
+    this._students = value;
   }
 }
