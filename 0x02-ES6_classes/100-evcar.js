@@ -19,4 +19,3 @@ export default class EVCar extends Car {
     return new Species(this.brand, this.motor, this.color);
   }
 }
-

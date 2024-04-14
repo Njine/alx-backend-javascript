@@ -38,4 +38,3 @@ export default class Car {
     return new Species(this.brand, this.motor, this.color);
   }
 }
-
