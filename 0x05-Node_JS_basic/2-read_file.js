@@ -34,16 +34,15 @@ const countStudents = (dataPath) => {
       }
       studentGroups[field].push(firstName);
     }
-    
+
     // Calculate total students
     const totalStudents = Object.values(studentGroups).reduce((acc, students) => acc + students.length, 0);
     console.log(`Number of students: ${totalStudents}`);
-    
+
     // Log the number of students in each field and their names
     for (const [field, students] of Object.entries(studentGroups)) {
       console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
     }
-    
   } catch (error) {
     throw new Error('Cannot load the database');
   }
