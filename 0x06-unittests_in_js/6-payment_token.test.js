@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const getPaymentTokenFromAPI = require('./getPaymentTokenFromAPI');
+const getPaymentTokenFromAPI = require('./6-payment_token');
 
 describe('getPaymentTokenFromAPI', () => {
   it('should resolve with correct response when success is true', () => {
