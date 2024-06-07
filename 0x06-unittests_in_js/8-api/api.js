@@ -11,4 +11,4 @@ const server = app.listen(PORT, () => {
   console.log(`API available on localhost port ${PORT}`);
 });
 
-module.exports = server;
+module.exports = { app, server };
