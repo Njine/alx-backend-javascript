@@ -1,6 +1,6 @@
 const request = require('request');
 const { expect } = require('chai');
-const server = require('./api');
+const { app, server } = require('./api');
 
 describe('API integration test', () => {
   const API_URL = 'http://localhost:7865';
@@ -16,23 +16,23 @@ describe('API integration test', () => {
       done();
     });
   });
+});
 
-  describe('GET /cart/:id', () => {
-    it('returns correct payment methods when :id is a number', (done) => {
-      const cartId = 12;
-      request.get(`${API_URL}/cart/${cartId}`, (_err, res, body) => {
-        expect(res.statusCode).to.be.equal(200);
-        expect(body).to.be.equal(`Payment methods for cart ${cartId}`);
-        done();
-      });
+describe('Cart page test', () => {
+  const API_URL = 'http://localhost:7865/cart';
+
+  it('GET /cart/:id returns correct response when :id is a number', (done) => {
+    request.get(`${API_URL}/12`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Payment methods for cart 12');
+      done();
     });
+  });
 
-    it('returns 404 status code when :id is NOT a number', (done) => {
-      const invalidCartId = 'hello';
-      request.get(`${API_URL}/cart/${invalidCartId}`, (_err, res, _body) => {
-        expect(res.statusCode).to.be.equal(404);
-        done();
-      });
+  it('GET /cart/:id returns 404 when :id is not a number', (done) => {
+    request.get(`${API_URL}/hello`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(404);
+      done();
     });
   });
 });

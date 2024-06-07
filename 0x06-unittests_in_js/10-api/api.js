@@ -10,21 +10,21 @@ app.get('/', (_, res) => {
 });
 
 app.get('/cart/:id(\\d+)', (req, res) => {
-  const { id } = req.params;
-  res.send(`Payment methods for cart ${id}`);
+  const cartId = req.params.id;
+  res.send(`Payment methods for cart ${cartId}`);
 });
 
 app.get('/available_payments', (_, res) => {
   res.json({
     payment_methods: {
       credit_cards: true,
-      paypal: false
-    }
+      paypal: false,
+    },
   });
 });
 
 app.post('/login', (req, res) => {
-  const { userName } = req.body;
+  const userName = req.body.userName;
   res.send(`Welcome ${userName}`);
 });
 
@@ -32,4 +32,4 @@ const server = app.listen(PORT, () => {
   console.log(`API available on localhost port ${PORT}`);
 });
 
-module.exports = server;
+module.exports = { app, server };
