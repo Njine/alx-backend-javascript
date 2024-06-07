@@ -1,9 +1,11 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const Utils = require('./utils');
+const sendPaymentRequestToApi = require('./4-payment');
+const e = require('express');
 
 describe('sendPaymentRequestToApi', () => {
-    expect.hasAssertions();
+    expect(Utils.calculateNumber('SUM', 100, 20)).to.equal(120);
 
     it('sendPaymentRequestToApi calls console.log with the right arguments', () => {
         const bigBrother = sinon.spy(console);
